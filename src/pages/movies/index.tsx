@@ -1,16 +1,22 @@
-import Link from "next/link"
-export default function Home(props) {
-  const movie = props.movies[6]
+import MoviePoster from "@/components/MoviePoster"
+import type { Movie } from "@/models/movie"
 
-  return props.movies.map((movie) => {
-    return (
-      <h1 key={movie.id}>
-        <Link href={`movies/${movie.id}`}>
-          {movie.title} - {movie.release_date}
-        </Link>
-      </h1>
-    )
-  })
+interface MovieListProps {
+  movies: Movie[]
+}
+
+export default function Home({ movies }: MovieListProps) {
+  return (
+    <div>
+      <div>
+        <h1 className="text-4xl font-bold">Now Playing</h1>
+        <div>whatever else we want</div>
+      </div>
+      {movies.map((movie: Movie) => {
+        return <MoviePoster key={movie.id} movie={movie} />
+      })}
+    </div>
+  )
 }
 
 export async function getServerSideProps() {
