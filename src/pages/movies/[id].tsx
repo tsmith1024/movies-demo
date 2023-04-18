@@ -15,6 +15,8 @@ export default function MovieDetails(props: MovieDetailsProps) {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { id } = context.query
 
+  // use the id to fetch movie details
+
   return {
     props: {
       id,
